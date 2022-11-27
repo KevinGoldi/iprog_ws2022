@@ -1,0 +1,73 @@
+package first;
+
+public class MathPlotter {
+    static String fcn = "";
+    public static void main(String[] args) {
+
+        while (!fcn.equalsIgnoreCase("stop")){
+            fcn = MyIO.promptAndRead("Welche Funktion soll ich plotten? ");
+            switch (fcn){
+                case "stop" : break;
+                case "sin" : plot(new D2Method() {
+                    public double compute (double value) {
+                        return Math.sin(value);
+                    }
+                }); break;
+                case "cos" : plot(new D2Method() {
+                    public double compute (double value) {
+                        return Math.cos(value);
+                    }
+                }); break;
+                case "tan" : plot(new D2Method() {
+                    public double compute (double value) {
+                        return Math.tan(value);
+                    }
+                }); break;
+                case "exp" : plot(new D2Method() {
+                    public double compute (double value) {
+                        return Math.exp(value);
+                    }
+                }); break;
+                case "log" : plot(new D2Method() {
+                    public double compute (double value) {
+                        return Math.log(value);
+                    }
+                }); break;
+                case "square" : plot(new D2Method() {
+                    public double compute (double value) {
+                        return value * value;
+                    }
+                }); break;
+                case "cube" : plot(new D2Method() {
+                    public double compute (double value) {
+                        return value * value * value;
+                    }
+                }); break;
+                case "quad" : plot(new D2Method() {
+                    public double compute (double value) {
+                        return value * value * value * value;
+                    }
+                }); break;
+                case "tower" : plot(new D2Method() {
+                    public double compute (double value) {
+                        return Math.pow(value, Math.pow(value, value));
+                    }
+                }); break;
+                default:
+                    System.out.println("geht net"); break;
+
+            }
+        }
+    }
+    public static void plot(D2Method meth){
+        System.out.println("Plot" + meth);
+        double start = MyIO.readDbl("Bitte Start eingeben");
+        double stopp = MyIO.readDbl("Bitte Stopp eingeben");
+        double sw = MyIO.readDbl("Bitte Schrittweite eingeben");
+        for (double x = start; x <= stopp; x += sw){
+            System.out.println(fcn + ": von  " + x + " ist " + meth.compute(x));
+
+        }
+
+    }
+}
