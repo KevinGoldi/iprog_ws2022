@@ -4,6 +4,8 @@ package first;
  * @author Jan Obernberger
  **/
 import java.math.BigInteger;
+import java.util.Objects;
+
 //ToDo: Methoden kommentieren
 //Da immutable, keine Setter-Methoden
 public class Fraction extends Number implements Comparable<Fraction> {
@@ -118,4 +120,18 @@ public class Fraction extends Number implements Comparable<Fraction> {
     public double doubleValue() {
         return this.zaehler.doubleValue() / this.nenner.doubleValue();
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(zaehler, nenner);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fraction fraction = (Fraction) o;
+        return zaehler.equals(fraction.zaehler) && nenner.equals(fraction.nenner);
+    }
 }
+
