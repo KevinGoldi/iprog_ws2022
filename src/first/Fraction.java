@@ -19,8 +19,8 @@ public class Fraction extends Number implements Comparable<Fraction> {
         switch (nenner.signum()) {
             case 0 : zaehler = BigInteger.ZERO; break;
             case -1 :
-                zaehler.negate();
-                nenner.negate();
+                zaehler = zaehler.negate();
+                nenner = nenner.negate();
 
             case 1 :
                 BigInteger temp = zaehler.gcd(nenner);
