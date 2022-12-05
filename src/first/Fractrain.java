@@ -14,8 +14,6 @@ public class Fractrain {
                 new Fraction(11,13), new Fraction(13,11), new Fraction(15,2),
                 new Fraction(1,7), new Fraction(55,1),
         };
-        Fraction frc = MyIO.readFct("gib ein");
-        System.out.println(frc);
         System.out.println("Der erste Bruch multipliziert mit dem zweiten ergibt: " + L[0].multiply(L[1]));
         System.out.println(Arrays.toString(L));
         Fraction b = new Fraction(8, 1);
@@ -33,11 +31,14 @@ public class Fractrain {
                 }
             }
             if (i <= 3824){
-                System.out.print(z + ", ");
+                System.out.println(z + " zahl nummer " + (i+1)+ ", ");
             }
+            /*
             if ((i+1) % 5 == 0 && i <= 3824){
                 System.out.println();
             }
+            */
+
             if (i <= 7999){
                 if (z.compareTo(max) > 0){
                     max = z;

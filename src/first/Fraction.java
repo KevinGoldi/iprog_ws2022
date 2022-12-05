@@ -61,7 +61,7 @@ public class Fraction extends Number implements Comparable<Fraction> {
     }
     public BigInteger getNumerator(){
         return zaehler;
-    }    public BigInteger getDemoninator(){
+    }    public BigInteger getDenominator(){
         return nenner;
     }
     public Fraction add(Fraction r){

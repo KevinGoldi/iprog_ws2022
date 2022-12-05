@@ -9,20 +9,20 @@ public class FractionStreams {
 
         ArrayList<Fraction> liste = new ArrayList<Fraction>();
         for (int i = -14; i <= 14; i++)
-            for (int j = 14; j >= -14;j--){
+            for (int j = -14; j <= 14;j++){
                 liste.add(new Fraction(i, j));
             }
 
 
-        /*
-        Gibt Float-Werte aller Brüche der sortierten Liste eindeutig aus
-        */
+        /**
+        *Gibt Float-Werte aller Brüche der sortierten Liste eindeutig aus
+        **/
         liste.stream().sorted().distinct().forEach(n ->{
             System.out.println(n.floatValue());
         });
-                /*
-        Gibt alle Brüche der sortierten Liste eindeutig und quadriert aus
-        */
+                /**
+        *Gibt alle Brüche der sortierten Liste eindeutig und quadriert aus
+        **/
         liste.stream().sorted().distinct().map(n -> n.multiply(n)).forEach(System.out::println);
                 /*
         Gibt Float-Werte aller Brüche der sortierten Liste eindeutig aus

@@ -22,6 +22,8 @@ public class Person implements Comparable<Person>, Cloneable, SimpleTreeNode{
         personen[3].addChild(personen[0]);
         personen[5].addChild(personen[0]);
         personen[5].addChild(personen[6]);
+        Person p = personen[2].clone();
+        System.out.println(p.getChild(0));
     }
 
     private final String vorname;
@@ -30,6 +32,7 @@ public class Person implements Comparable<Person>, Cloneable, SimpleTreeNode{
     private final String geburtsort;
     private final int geburtsjahr;
     private final double hoehe;
+    //Hier wird über DefaultTreeNode delegiert, womit die Methoden hieraus nutzbar sind
     private DefaultTreeNode node;
 
     public Person(String vorname, String name, String beruf, String geburtsort, int geburtsjahr, double hoehe) {
@@ -73,14 +76,14 @@ public class Person implements Comparable<Person>, Cloneable, SimpleTreeNode{
             MyIO.writeln("Beide sind gleich groß: " + this.hoehe);
         } else if (this.hoehe <= a.hoehe) {
             MyIO.writeln(a.name + " ist " + (a.hoehe - this.hoehe) + " größer als " + this.name);
-        } else if (this.hoehe >= a.hoehe) {
+        } else {
             MyIO.writeln(this.name + " ist " + (this.hoehe - a.hoehe) + " größer als " + a.name);
         }
         if (this.geburtsjahr == a.geburtsjahr) {
             MyIO.writeln("Beide sind gleich alt: " + (new GregorianCalendar().get(Calendar.YEAR) - geburtsjahr));
         } else if (this.geburtsjahr <= a.geburtsjahr) {
             MyIO.writeln(this.name + " ist " + (a.geburtsjahr - this.geburtsjahr) + " älter als " + a.name);
-        } else if (this.geburtsjahr >= a.geburtsjahr) {
+        } else {
             MyIO.writeln(a.name + " ist " + (this.geburtsjahr - a.geburtsjahr) + " älter als " + this.name);
         }
     }
@@ -109,6 +112,7 @@ public class Person implements Comparable<Person>, Cloneable, SimpleTreeNode{
     public Person clone() {
         try {
             // TODO: copy mutable state here, so the clone can't change the internals of the original
+            //Erzeugt ein geklontes Objekt, welches als Person gecastet wird
             return (Person) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();

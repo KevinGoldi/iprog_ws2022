@@ -65,7 +65,8 @@ public class Matrix {
     }
 
     //Instanzvariablen
-    private final int zeilen, spalten;
+    final int zeilen;
+    final int spalten;
     private final double[][] feld;
 
     //Konstruktor

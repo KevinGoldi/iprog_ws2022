@@ -6,6 +6,7 @@ public class MathPlotter {
 
         while (!fcn.equalsIgnoreCase("stop")){
             fcn = MyIO.promptAndRead("Welche Funktion soll ich plotten? ");
+            /*
             switch (fcn){
                 case "stop" : break;
                 case "sin" : plot(new D2Method() {
@@ -53,6 +54,23 @@ public class MathPlotter {
                         return Math.pow(value, Math.pow(value, value));
                     }
                 }); break;
+                default:
+                    System.out.println("geht net"); break;
+
+            }
+
+             */
+            switch (fcn){
+                case "stop" : break;
+                case "sin" : plot(Math::sin); break;
+                case "cos" : plot(Math::cos); break;
+                case "tan" : plot(Math::tan); break;
+                case "exp" : plot(Math::exp); break;
+                case "log" : plot(Math::log); break;
+                case "square" : plot(value -> value * value); break;
+                case "cube" : plot(value -> value * value * value); break;
+                case "quad" : plot(value -> value * value * value * value); break;
+                case "tower" : plot(value -> Math.pow(value, Math.pow(value, value))); break;
                 default:
                     System.out.println("geht net"); break;
 
