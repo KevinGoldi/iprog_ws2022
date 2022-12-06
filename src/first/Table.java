@@ -7,15 +7,16 @@ public class Table {
         Table table = new Table(4, 1);
         int[] arr = {0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1};
         int[] arr2 = {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0};
-        Table taple = new Table(4, arr, arr2);
+        Table taple = new Table(4, arr);
         System.out.println(taple.toString());
+        System.out.println(taple.dnf());
     }
 
     //Instanzvariablen
     private final int eingaenge, ausgaenge;
+    private int[][] ausgaenge2;
     private int zeilen, spalten;
     private boolean[][] feld;
-
     //Konstruktor
     Table(int eingaenge, int ausgaenge) {
         this.eingaenge = eingaenge;
@@ -26,11 +27,11 @@ public class Table {
         //Schleife für Spalten
         for(int i = 0; i <= eingaenge -1; i++) {
             //Schleife für Zeilen
-        for (int l = 0; l < zeilen; l += (1<<i)){
-            if (l % (1<<i+1) == (1<<i)) {
-                //Schleife für die jeweilige Anzahl an 1en
-                for (int m = 0; m < (1 << i); m++) {
-                    feld[m + l][eingaenge-1-i] = true;
+            for (int l = 0; l < zeilen; l += (1 << i)) {
+                if (l % (1 << i + 1) == (1 << i)) {
+                    //Schleife für die jeweilige Anzahl an 1en
+                    for (int m = 0; m < (1 << i); m++) {
+                        feld[m + l][eingaenge - 1 - i] = true;
                     }
                 }
             }
@@ -63,6 +64,38 @@ public class Table {
                 }
             }
         }
+    }
+    public String dnf() {
+        String res = "";
+        int[][] arr = new int[ausgaenge][zeilen];
+        for (int i = 0; i < this.ausgaenge; i++){
+            for (int j = 0; j < this.zeilen; j++){
+                if (this.feld[j][eingaenge+i]) {
+                    arr[i][j] = 1;
+                }else {
+                    arr[i][j] = 0;
+                }
+            }
+
+        }
+        Table[] res2 = new Table[this.ausgaenge];
+        for (int i = 0; i < this.ausgaenge; i++) {
+            res2[i] = new Table(this.eingaenge, 1);
+            res2[i] = res2[i].addOut(arr[i]);
+        }
+        //Ausgänge werden nicht kopiert
+        for (Table t : res2) {
+            for (boolean[] b : t.feld) {
+                if (b[b.length-1] == true) {
+                    res = res.concat(b.toString());
+                }
+            }
+        }
+        return res;
+    }
+
+    public Table addOut(int ... arr){
+        return new Table(this.eingaenge, arr);
     }
 
     public void print(String s) {
