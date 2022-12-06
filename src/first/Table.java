@@ -7,14 +7,13 @@ public class Table {
         Table table = new Table(4, 1);
         int[] arr = {0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1};
         int[] arr2 = {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0};
-        Table taple = new Table(4, arr);
+        Table taple = new Table(4, arr, arr2);
         System.out.println(taple.toString());
         System.out.println(taple.dnf());
     }
 
     //Instanzvariablen
     private final int eingaenge, ausgaenge;
-    private int[][] ausgaenge2;
     private int zeilen, spalten;
     private boolean[][] feld;
     //Konstruktor
@@ -39,7 +38,7 @@ public class Table {
     }
     Table(int eingaenge, int[] ... ausgaenge) {
         this.eingaenge = eingaenge;
-        this.ausgaenge = 1;
+        this.ausgaenge = ausgaenge.length;
         zeilen = 1 << eingaenge;
         spalten = eingaenge + ausgaenge.length;
         feld = new boolean[zeilen][spalten];
@@ -83,13 +82,28 @@ public class Table {
             res2[i] = new Table(this.eingaenge, 1);
             res2[i] = res2[i].addOut(arr[i]);
         }
-        //Ausgänge werden nicht kopiert
+        int c = 1;
         for (Table t : res2) {
+            String or = " || ";
+            res = res.concat("Die DNF von Ausgang " + c++ + " ist : ");
             for (boolean[] b : t.feld) {
-                if (b[b.length-1] == true) {
-                    res = res.concat(b.toString());
+
+                if (b[b.length-1]) {
+                    for (int i = 0; i < b.length-1; i++) {
+                        if (i < b.length - 2){
+                            if (b[i]) res = res.concat((i+1) + " && ");
+                            if (!b[i]) res = res.concat("!" + (i+1) + " && ");
+                        } else if (i < b.length -1){
+                            if (b[i]) res = res.concat((i+1) + "");
+                            if (!b[i]) res = res.concat("!" + (i+1) + "");
+                        }
+                    }
+                    res = res.concat(or);
                 }
+
             }
+            res = res.substring(0, res.length()-or.length());
+            res = res.concat("\n");
         }
         return res;
     }
