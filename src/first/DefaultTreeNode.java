@@ -16,9 +16,9 @@ public class DefaultTreeNode implements SimpleTreeNode{
             //Kapazitätsverdopplung ist sinnvoll, wird später noch erläutert
             //Hierdurch ist der Durchschnittliche Aufwand für das Element einfach errechenbar(?)
             this.CAPACITY *= 2;
-            SimpleTreeNode[] newchilds =  new SimpleTreeNode[this.CAPACITY];
-            if (this.childcnt >= 0) System.arraycopy(this.childs, 0, newchilds, 0, this.childcnt);
-            this.childs = newchilds;
+            SimpleTreeNode[] newchild =  new SimpleTreeNode[this.CAPACITY];
+            if (this.childcnt >= 0) System.arraycopy(this.childs, 0, newchild, 0, this.childcnt);
+            this.childs = newchild;
         }
         this.childs[this.childcnt++] = child;
     }

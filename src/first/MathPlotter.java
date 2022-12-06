@@ -6,7 +6,7 @@ public class MathPlotter {
 
         while (!fcn.equalsIgnoreCase("stop")){
             fcn = MyIO.promptAndRead("Welche Funktion soll ich plotten? ");
-            /*
+
             switch (fcn){
                 case "stop" : break;
                 case "sin" : plot(new D2Method() {
@@ -59,7 +59,7 @@ public class MathPlotter {
 
             }
 
-             */
+             /*
             switch (fcn){
                 case "stop" : break;
                 case "sin" : plot(Math::sin); break;
@@ -75,6 +75,7 @@ public class MathPlotter {
                     System.out.println("geht net"); break;
 
             }
+            */
         }
     }
     public static void plot(D2Method meth){
