@@ -6,8 +6,8 @@ import java.util.GregorianCalendar;
 
 public class Person implements Comparable<Person>, Cloneable, SimpleTreeNode{
     public static void main(String[] args) {
-        MyIO.writeln("Lass uns die Klasse Testen.");
-        MyIO.writeln("Hierzu werde ich ein Objekt mit meinen Daten erzuegen.");
+        System.out.println("Lass uns die Klasse Testen.");
+        System.out.println("Hierzu werde ich ein paar Objekte erzeugen.");
         Person[] personen = {
                 new Person("Alex", "Lustig", "Instandhalter", "Heilbronn", 2000, 1.80),
                 new Person("Sven", "Lustig", "Verkäufer", "Köln", 1992, 1.81),
@@ -17,13 +17,30 @@ public class Person implements Comparable<Person>, Cloneable, SimpleTreeNode{
                 new Person("Vitali", "Böse", "Profiboxer", "Moskau", 1984, 1.85),
                 new Person("Yusuf", "Böse", "Kamelzüchter", "Istanbul", 1999, 1.73)};
 
+        for (Person person : personen) {
+            System.out.println(person);
+        }
+        System.out.println("Lass mich jetzt Verwandtschaftbeziehungen erstellen");
         personen[2].addChild(personen[1]);
+        System.out.println("Jetzt ist " + personen[1].vorname + " Ein Kind von " + personen[2].vorname);
         personen[2].addChild(personen[3]);
+        System.out.println("Jetzt ist " + personen[3].vorname + " Ein Kind von " + personen[2].vorname);
         personen[3].addChild(personen[0]);
+        System.out.println("Jetzt ist " + personen[0].vorname + " Ein Kind von " + personen[3].vorname);
         personen[5].addChild(personen[0]);
+        System.out.println("Jetzt ist " + personen[0].vorname + " Ein Kind von " + personen[5].vorname);
         personen[5].addChild(personen[6]);
+        System.out.println("Jetzt ist " + personen[6].vorname + " Ein Kind von " + personen[1].vorname);
+        personen[5].addChild(personen[4]);
+        System.out.println("Jetzt ist " + personen[4].vorname + " Ein Kind von " + personen[5].vorname);
+        System.out.println("Lass mich nun eine Person klonen...");
         Person p = personen[2].clone();
-        System.out.println(p.getChild(0));
+        System.out.println("Sehr schön, nun lass uns überprüfen, ob das geklappt hat? ");
+        System.out.println("Die geklonte Person ist\n" + p);
+        System.out.println(" ihre kinder sind ");
+        for(int i = 0; i < p.getChildCnt(); i++){
+            System.out.println(p.getChild(i));
+        }
     }
 
     private final String vorname;
@@ -54,6 +71,8 @@ public class Person implements Comparable<Person>, Cloneable, SimpleTreeNode{
         this.geburtsjahr = MyIO.readInt("Gib mir das Geburtsjahr der Person: ");
         this.hoehe = MyIO.readFlt("Gib mir die Körpergröße der Person:");
     }
+
+
 
     public String toString() {
 

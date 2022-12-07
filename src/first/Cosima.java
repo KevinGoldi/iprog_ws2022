@@ -1,6 +1,6 @@
 package first;
 
-public class Corona {
+public class Cosima {
     public static void main(String[] args) {
         int n = MyIO.readInt("Gib mir eine Zahl");
         for (int i = 0; i < n; i++){
